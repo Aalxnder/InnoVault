@@ -2,12 +2,19 @@ package com.InnoVault.InnoVault;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @SpringBootApplication
-public class InnoVaultApplication {
+public class InnoVaultApplication  implements WebMvcConfigurer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(InnoVaultApplication.class, args);
+	}
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 	}
 
 }

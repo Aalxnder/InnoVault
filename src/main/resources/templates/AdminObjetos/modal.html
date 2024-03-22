@@ -1,0 +1,83 @@
+<div id="addObjetoModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Agregar objeto</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form id="agregar_objeto" class="row g-3" action="" method="post"
+                      enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nombreAd" class="form-label">Nombre</label>
+                        <input name="nombreAd" type="text" class="form-control border border-dark" id="nombreAd"
+                               value="" required
+                               pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'\-]{2,35}"
+                               title="Solo letras Minimo 2 Maximo 35" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoPAd" class="form-label">Apellido Paterno</label>
+                        <input name="apellidoPAd" type="text" class="form-control border border-dark"
+                               id="apellidoPAd" value="" required
+                               pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'\-]{2,25}"
+                               title="Solo letras Minimo 2 Maximo 25" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoMAd" class="form-label">Apellido Materno</label>
+                        <input name="apellidoMAd" type="text" class="form-control border border-dark"
+                               id="apellidoMAd" value="" required
+                               pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'\-]{2,25}"
+                               title="Solo letras Minimo 2 Maximo 25" class="form-control" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="correoAd" class="form-group">Correo</label>
+
+                        <div id="correo-conrtainer">
+
+                            <input name="input-editable" id="input-editable" type="text"
+                                   class="left-input form-control border border-dark"
+                                   placeholder="Nombre de usuario" pattern="^[a-z]+\.[a-z]+\d{4}$" required
+                                   title="Correo invalido">
+
+                            <input name="input-readonly" id="input-readonly" type="text"
+                                   class="right-input form-control border border-dark" value="@alumnos.udg.mx"
+                                   readonly />
+
+                            <input type="hidden" name="correoAd" id="correoAd">
+                        </div>
+                    </div>
+
+                    <div class="form-group password-toggle-container">
+                        <label for="contraAd" class="form-group">Contraseña</label>
+                        <input name="contraAd" id="contraAd" type="password"
+                               class="form-control border border-dark"
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{'?/:;.,]).{8,}" required
+                               title="Debe tener al menos 8 caracteres, una mayúscula y un carácter especial">
+                        <button type="button" id="togglePassword" class="password-toggle-button"
+                                onclick="togglePasswordVisibility('contraAd', 'togglePassword')">Mostrar</button>
+                    </div>
+
+                    <div class="form-group password-toggle-container">
+                        <label for="contraAd_confirm" class="form-group">confirmar Contraseña</label>
+                        <input name="contraAd_confirm" id="contraAd_confirm" type="password"
+                               class="form-control border border-dark"
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{'?/:;.,]).{8,}" required
+                               oninput="checkPasswordMatch()"
+                               title="Debe tener al menos 8 caracteres, una mayúscula y un carácter especial">
+                        <button type="button" id="toggleConfirmPassword" class="password-toggle-button"
+                                onclick="togglePasswordVisibility('contraAd_confirm', 'toggleConfirmPassword')">Mostrar</button>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancelar">
+                <input type="submit" class="btn btn-info" value="Guardar">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

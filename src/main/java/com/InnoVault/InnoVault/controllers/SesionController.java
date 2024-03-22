@@ -14,4 +14,17 @@ public class SesionController
     {
         return new ModelAndView("paginas/Registro");
     }
+    @GetMapping("/Login")
+    public ModelAndView verPaginaDeLogin()
+    {
+        return new ModelAndView("paginas/Login");
+    }
+    @GetMapping("/Rest")
+    public ModelAndView cambiar_contr() {
+        return new ModelAndView("paginas/Rest");
+    }
+    @GetMapping("/verify_code")
+    public ModelAndView verify_code(){
+        return new ModelAndView("paginas/verify_code");
+    }
 }
