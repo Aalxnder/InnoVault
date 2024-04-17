@@ -55,11 +55,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.6.4.Final</version> <!-- Otra versión compatible con tu proyecto -->
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -67,7 +62,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.2.4</version>
 				<configuration>
 					<excludes>
 						<exclude>

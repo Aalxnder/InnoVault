@@ -2,6 +2,8 @@ package com.innovaultmy.app.controllers.RegistroControllers;
 
 import com.innovaultmy.app.models.registros.InventarioFilamento;
 import com.innovaultmy.app.repositories.registros.InventarioFilamentoRepositorie;
+import com.innovaultmy.app.service.ImpInventarioFilamentoService;
+import com.innovaultmy.app.service.InventarioFilamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +14,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 
 @Controller
@@ -20,6 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminObjetoController {
     @Autowired
     private InventarioFilamentoRepositorie inventarioFilamentoRepositorie;
+
+    private InventarioFilamentoService filamentoService;
+    public AdminObjetoController(InventarioFilamentoService filamentoService) {
+        this.filamentoService = filamentoService;
+    }
     @GetMapping("/RegistrarObjeto")
     public ModelAndView Mostrarregistrar()
     {
@@ -46,35 +56,33 @@ public class AdminObjetoController {
                 .addObject("filamento",filamentos);
     }
 
+    @PostMapping("/EditarObjeto")
+    public ModelAndView editarObjeto(@RequestParam("idObjeto") long id,
+                                     @RequestParam("nombreObjeto") String nombre,
+                                     @RequestParam("TipoFilamento") String tipoDeFilamento,
+                                     @RequestParam("CantidadFilamento") int cantidad,
+                                     @RequestParam("ColorFilamento") String color,
+                                     @RequestParam("notas") String notas) {
 
-//
-//    @PostMapping("/EditarObjeto")
-//    public ModelAndView editarObjeto(@RequestParam("idObjeto") long id,
-//                                     @RequestParam("nombreObjeto") String nombre,
-//                                     @RequestParam("TipoFilamento") String tipoDeFilamento,
-//                                     @RequestParam("CantidadFilamento") int cantidad,
-//                                     @RequestParam("ColorFilamento") String color,
-//                                     @RequestParam("notas") String notas) {
-//
-//        InventarioFilamento filamento = filamentoService.buscarPorId(id);
-//        if (filamento != null) {
-//            filamento.setNombre(nombre);
-//            filamento.setTipoDeFilamento(tipoDeFilamento);
-//            filamento.setCantidad(cantidad);
-//            filamento.setColor(color);
-//            filamento.setNotas(notas);
-//            filamento.setFechaEdicion(new Date());
-//
-//            filamentoService.actualizarFilamento(filamento);
-//        }
-//        return new ModelAndView("redirect:/admin/Objetos");
-//    }
-//    @PostMapping("/EliminarObjeto")
-//    public ModelAndView eliminarObjeto(@RequestParam("idObjeto") long id){
-//        InventarioFilamento filamento = filamentoService.buscarPorId(id);
-//        if (filamento != null) {
-//            filamentoService.borrar(filamento);
-//        }
-//        return new ModelAndView("redirect:/admin/Objetos");
-//    }
+        InventarioFilamento filamento = filamentoService.buscarPorId(id);
+        if (filamento != null) {
+            filamento.setNombre(nombre);
+            filamento.setTipoDeFilamento(tipoDeFilamento);
+            filamento.setCantidad(cantidad);
+            filamento.setColor(color);
+            filamento.setNotas(notas);
+            filamento.setFechaEdicion(new Date());
+
+            filamentoService.actualizarFilamento(filamento);
+        }
+        return new ModelAndView("redirect:/admin/Indexfilamento");
+    }
+    @PostMapping("/EliminarObjeto")
+    public ModelAndView eliminarObjeto(@RequestParam("idObjeto") long id){
+        InventarioFilamento filamento = filamentoService.buscarPorId(id);
+        if (filamento != null) {
+            filamentoService.borrar(filamento);
+        }
+        return new ModelAndView("redirect:/admin/Indexfilamento");
+    }
 }

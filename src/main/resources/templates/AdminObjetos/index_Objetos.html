@@ -227,7 +227,7 @@
                         </tr>
                     </thead>
                         <tbody>
-                            <tr th:each="filamento : ${filamento}" th:object="${filamento}">
+                            <tr th:each="filamento : ${filamento}" th:object="${filamento}" th:data-id="${filamento.id}">
                                 <td th:text="*{id}"></td>
                                 <td th:text="*{nombre}"></td>
                                 <td th:text="*{tipoDeFilamento}"></td>
