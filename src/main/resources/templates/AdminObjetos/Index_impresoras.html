@@ -205,9 +205,9 @@
                     </li>
                 </ul>
             </nav>
-            
-            
-            
+
+
+
             <div class="container-fluid">
                 <h2 class="d-inline-block mr-3">Filamentos</h2>
                 <button type="button" class="btn btn-dark btn-lg mt-3 ml-5 mb-4" data-toggle="modal" data-target="#addObjectModal">
@@ -216,217 +216,38 @@
                 <br>
                 <table id="tabla" class="table table-hover">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Cantidad</th>
-                            <th>Color</th>
-                            <th>Notas</th>
-                            <th>Acciones</th>
-                        </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>
+                        <th>Color</th>
+                        <th>Notas</th>
+                        <th>Acciones</th>
+                    </tr>
                     </thead>
-                        <tbody>
-                            <tr th:each="filamento : ${filamento}" th:object="${filamento}">
-                                <td th:text="*{id}"></td>
-                                <td th:text="*{nombre}"></td>
-                                <td th:text="*{tipoDeFilamento}"></td>
-                                <td th:text="*{cantidad}"></td>
-                                <td th:text="*{color}"></td>
-                                <td th:text="*{notas}" style="max-width: 200px; overflow-wrap: break-word;"></td>
-                                <td class="d-none" th:text="*{fechaEdicion}"></td>
-                                <td>
-                                    <a class="btn btn-info btn-sm mr-1 details" data-toggle="modal" data-target="#detailsObjectModal">
-                                        Detalles
-                                    </a>
-                                    <a class="btn btn-primary btn-sm mr-1 edit" data-toggle="modal" data-target="#editObjectModal">
-                                        Editar
-                                    </a>
-                                    <a class="btn btn-danger btn-sm  eliminar" data-toggle="modal" data-target="#deleteObjectModal">
-                                        Eliminar
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
+                    <tbody>
+                    <tr th:each="Miscelanea : ${Miscelanea}" th:object="${Miscelanea}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{nombre}"></td>
+                        <td th:text="*{cantidad}"></td>
+                        <td th:text="*{categoria}"></td>
+                        <td th:text="*{descripcion}" style="max-width: 200px; overflow-wrap: break-word;"></td>
+                        <td class="d-none" th:text="*{fechaEdicion}"></td>
+                        <td>
+                            <a class="btn btn-info btn-sm mr-1 details" data-toggle="modal" data-target="#detailsObjectModal">
+                                Detalles
+                            </a>
+                            <a class="btn btn-primary btn-sm mr-1 edit" data-toggle="modal" data-target="#editObjectModal">
+                                Editar
+                            </a>
+                            <a class="btn btn-danger btn-sm  eliminar" data-toggle="modal" data-target="#deleteObjectModal">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
                 </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-    
-
-<div id="addObjectModal" class="modal fade" tabindex="-1" aria-labelledby="addLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="addLabel">Agregar objeto</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-                <!-- Formulario -->
-                <form action="/admin/RegistrarObjeto" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="nombreObjeto" class="form-label">Nombre:</label>
-                            <input type="text" name="nombreObjeto" id="nombreObjetoR" class="form-control form-control-user" placeholder="Nombre">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="TipoFilamento" class="form-label">Tipo:</label>
-                            <input type="text" name="TipoFilamento" id="TipoFilamentoR" class="form-control form-control-user" placeholder="Tipo:">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="CantidadFilamento" class="form-label">Cantidad:</label>
-                            <input type="number" name="CantidadFilamento" id="CantidadFilamentoR" class="form-control form-control-user" placeholder="Cantidad">
-
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="ColorFilamento" class="form-label">Color:</label>
-                            <input type="text" name="ColorFilamento" id="ColorFilamentoR" class="form-control form-control-user" placeholder="color:">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <label for="notas" class="form-label">Notas:</label>
-                            <textarea name="notas" id="notas" class="form-control form-control-user no-resizable heigth-large" placeholder="Notas" rows="6" ></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark btn-sm-2 float-right">Registrar filamento</button>
-                        <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="detailsObjectModal" class="modal fade" tabindex="-1" aria-labelledby="detailsLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="detailsLabel">Detalles de objetos</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <p class="form-label">Nombre</p>
-                        <p id="nombreObjetoDs" class="form-control form-control-user"></p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="form-label">Tipo</p>
-                        <p id="TipoFilamentoDs" class="form-control form-control-user" ></p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <p class="form-label">Cantidad</p>
-                        <p id="CantidadFilamentoDs" class="form-control form-control-user" ></p>
-
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="form-label">Color</p>
-                        <p id="ColorFilamentoDs" class="form-control form-control-user"></p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mb-sm-0">
-                        <p class="form-label">Notas</p>
-                        <textarea id="notasDs" class="form-control form-control-user" style="resize: none;" disabled rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mb-sm-0">
-                        <p class="form-label">Fecha de edición</p>
-                        <p id="fechaDs" class="form-control form-control-user no-resizable heigth-large" ></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="editObjectModal" class="modal fade" tabindex="-1" aria-labelledby="editLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="editLabel">Editar objeto</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-                <!-- Formulario -->
-                <form id="editObject" action="/admin/EditarObjeto" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="">
-                    <input type="hidden" name="idObjeto" id="idObjectE" value="">
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="nombreObjeto" class="form-label">Nombre:</label>
-                            <input type="text" name="nombreObjeto" id="nombreObjetoE" class="form-control form-control-user" placeholder="Nombre">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="TipoFilamento" class="form-label">Tipo:</label>
-                            <input type="text" name="TipoFilamento" id="TipoFilamentoE" class="form-control form-control-user" placeholder="Tipo:">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="CantidadFilamento" class="form-label">Cantidad:</label>
-                            <input type="number" name="CantidadFilamento" id="CantidadFilamentoE" class="form-control form-control-user" placeholder="Cantidad">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="ColorFilamento" class="form-label">Color:</label>
-                            <input type="text" name="ColorFilamento" id="ColorFilamentoE" class="form-control form-control-user" placeholder="color:">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <label for="notas" class="form-label">Notas:</label>
-                            <textarea name="notas" id="notasE"  class="form-control form-control-user no-resizable heigth-large" placeholder="Notas" rows="6" ></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark btn-sm-2 float-right">Editar filamento</button>
-                        <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="deleteObjectModal" class="modal fade" tabindex="-1" aria-labelledby="eliminarLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="eliminarLabel">Eliminar objeto</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <form id="deleteObject" action="/admin/EliminarObjeto" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="idAd" value="">
-                    <input type="hidden" name="idObjeto" id="idObjectD" value="Hello">
-
-                    <div class="container">
-                        <div class="row">
-                                <p>¿Esta seguro de eliminar este objeto?</p>
-                        </div>
-                        <p id="nombreObjetoD"></p>
-                        <p class="text-warning"><small>Esta accion no se puede deshacer.</small></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark btn-sm-2 float-right">Elimiar objeto</button>
-                        <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

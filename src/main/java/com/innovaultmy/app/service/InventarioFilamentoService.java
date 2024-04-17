@@ -1,6 +1,6 @@
 package com.innovaultmy.app.service;
 
-import com.innovaultmy.app.models.InventarioFilamento;
+import com.innovaultmy.app.models.registros.InventarioFilamento;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Objetos</title>
+    <title>Registro Miscelanea</title>
     <link href="../../static/css/sb-admin-2.css" rel="stylesheet">
 
     <link href="../../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -62,7 +62,6 @@
             </div>
         </li>
 
-
         <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsethree" href=""
                aria-expanded="true" aria-controls="collapseUtilities">
@@ -75,6 +74,7 @@
                     <a class="nav-link collapsed text-black-50" href="#collapsethreeChild" data-toggle="collapse" aria-expanded="false" aria-controls="collapsethreeChild">Mirar Objetos</a>
                     <a class="nav-link collapsed text-black-50" href="#collapsethreeChildReg" data-toggle="collapse" aria-expanded="false" aria-controls="collapsethreeChild">Registrar Objetos</a>
                     <div class="collapse-divider"></div>
+
                 </div>
             </div>
             <div id="collapsethreeChild" class="collapse" aria-labelledby="headingUtilities" data-parent="#collapsethree">
@@ -98,7 +98,6 @@
                 </div>
             </div>
         </li>
-
         <hr class="sidebar-divider text-black-50">
 
         <div class="sidebar-heading text-black-50">
@@ -188,7 +187,7 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Perfil
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" h  ref="#">
                                 <i class="ogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 configuraciomfas fa-c
                             </a>
@@ -205,227 +204,39 @@
                     </li>
                 </ul>
             </nav>
-            
-            
-            
             <div class="container-fluid">
-                <h2 class="d-inline-block mr-3">Filamentos</h2>
-                <button type="button" class="btn btn-dark btn-lg mt-3 ml-5 mb-4" data-toggle="modal" data-target="#addObjectModal">
-                    Registrar objetos
-                </button>
+                <h2> Añadir Varios</h2>
                 <br>
-                <table id="tabla" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Cantidad</th>
-                            <th>Color</th>
-                            <th>Notas</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                        <tbody>
-                            <tr th:each="filamento : ${filamento}" th:object="${filamento}">
-                                <td th:text="*{id}"></td>
-                                <td th:text="*{nombre}"></td>
-                                <td th:text="*{tipoDeFilamento}"></td>
-                                <td th:text="*{cantidad}"></td>
-                                <td th:text="*{color}"></td>
-                                <td th:text="*{notas}" style="max-width: 200px; overflow-wrap: break-word;"></td>
-                                <td class="d-none" th:text="*{fechaEdicion}"></td>
-                                <td>
-                                    <a class="btn btn-info btn-sm mr-1 details" data-toggle="modal" data-target="#detailsObjectModal">
-                                        Detalles
-                                    </a>
-                                    <a class="btn btn-primary btn-sm mr-1 edit" data-toggle="modal" data-target="#editObjectModal">
-                                        Editar
-                                    </a>
-                                    <a class="btn btn-danger btn-sm  eliminar" data-toggle="modal" data-target="#deleteObjectModal">
-                                        Eliminar
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-    
-
-<div id="addObjectModal" class="modal fade" tabindex="-1" aria-labelledby="addLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="addLabel">Agregar objeto</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-                <!-- Formulario -->
-                <form action="/admin/RegistrarObjeto" method="post" enctype="multipart/form-data">
+                <form action="" method="post" th:object="${Miscelanea}"
+                      enctype="multipart/form-data">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="nombreObjeto" class="form-label">Nombre:</label>
-                            <input type="text" name="nombreObjeto" id="nombreObjetoR" class="form-control form-control-user" placeholder="Nombre">
+                            <input th:field="*{nombre}" type="text" id="nombreObjeto" class="form-control form-control-user" placeholder="nombre">
+
                         </div>
                         <div class="col-sm-6">
-                            <label for="TipoFilamento" class="form-label">Tipo:</label>
-                            <input type="text" name="TipoFilamento" id="TipoFilamentoR" class="form-control form-control-user" placeholder="Tipo:">
+                            <label for="cantidad" class="form-label">Cantidad:</label>
+                            <input th:field="*{cantidad}"type="text" id="cantidad" class="form-control form-control-user" placeholder="Cantidad:">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="CantidadFilamento" class="form-label">Cantidad:</label>
-                            <input type="number" name="CantidadFilamento" id="CantidadFilamentoR" class="form-control form-control-user" placeholder="Cantidad">
-
+                            <input th:field="*{categoria}" type="text" id="CantidadFilamento" class="form-control form-control-user" placeholder="cantidad">c
                         </div>
                         <div class="col-sm-6">
                             <label for="ColorFilamento" class="form-label">Color:</label>
-                            <input type="text" name="ColorFilamento" id="ColorFilamentoR" class="form-control form-control-user" placeholder="color:">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <label for="notas" class="form-label">Notas:</label>
-                            <textarea name="notas" id="notas" class="form-control form-control-user no-resizable heigth-large" placeholder="Notas" rows="6" ></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark btn-sm-2 float-right">Registrar filamento</button>
-                        <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="detailsObjectModal" class="modal fade" tabindex="-1" aria-labelledby="detailsLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="detailsLabel">Detalles de objetos</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <p class="form-label">Nombre</p>
-                        <p id="nombreObjetoDs" class="form-control form-control-user"></p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="form-label">Tipo</p>
-                        <p id="TipoFilamentoDs" class="form-control form-control-user" ></p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <p class="form-label">Cantidad</p>
-                        <p id="CantidadFilamentoDs" class="form-control form-control-user" ></p>
-
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="form-label">Color</p>
-                        <p id="ColorFilamentoDs" class="form-control form-control-user"></p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mb-sm-0">
-                        <p class="form-label">Notas</p>
-                        <textarea id="notasDs" class="form-control form-control-user" style="resize: none;" disabled rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mb-sm-0">
-                        <p class="form-label">Fecha de edición</p>
-                        <p id="fechaDs" class="form-control form-control-user no-resizable heigth-large" ></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="editObjectModal" class="modal fade" tabindex="-1" aria-labelledby="editLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="editLabel">Editar objeto</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-                <!-- Formulario -->
-                <form id="editObject" action="/admin/EditarObjeto" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="">
-                    <input type="hidden" name="idObjeto" id="idObjectE" value="">
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="nombreObjeto" class="form-label">Nombre:</label>
-                            <input type="text" name="nombreObjeto" id="nombreObjetoE" class="form-control form-control-user" placeholder="Nombre">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="TipoFilamento" class="form-label">Tipo:</label>
-                            <input type="text" name="TipoFilamento" id="TipoFilamentoE" class="form-control form-control-user" placeholder="Tipo:">
+                            <input th:field="*{descripcion}" type="text" id="ColorFilamento" class="form-control form-control-user" placeholder="color:">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="CantidadFilamento" class="form-label">Cantidad:</label>
-                            <input type="number" name="CantidadFilamento" id="CantidadFilamentoE" class="form-control form-control-user" placeholder="Cantidad">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="ColorFilamento" class="form-label">Color:</label>
-                            <input type="text" name="ColorFilamento" id="ColorFilamentoE" class="form-control form-control-user" placeholder="color:">
+                            <label for="CantidadFilamento" class="form-label">Fecha:</label>
+                            <input th:field="*{fechaEdicion}" type="date" id="fechaEdicion" class="form-control form-control-user" placeholder="Fecha de registro">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <label for="notas" class="form-label">Notas:</label>
-                            <textarea name="notas" id="notasE"  class="form-control form-control-user no-resizable heigth-large" placeholder="Notas" rows="6" ></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark btn-sm-2 float-right">Editar filamento</button>
-                        <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="deleteObjectModal" class="modal fade" tabindex="-1" aria-labelledby="eliminarLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="eliminarLabel">Eliminar objeto</h4>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <form id="deleteObject" action="/admin/EliminarObjeto" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="idAd" value="">
-                    <input type="hidden" name="idObjeto" id="idObjectD" value="Hello">
-
-                    <div class="container">
-                        <div class="row">
-                                <p>¿Esta seguro de eliminar este objeto?</p>
-                        </div>
-                        <p id="nombreObjetoD"></p>
-                        <p class="text-warning"><small>Esta accion no se puede deshacer.</small></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark btn-sm-2 float-right">Elimiar objeto</button>
-                        <button type="button" class="btn btn-danger btn-sm-2 float-right" data-dismiss="modal">Cancelar</button>
-                    </div>
+                    <button type="submit" class="btn btn-dark btn-sm-2 float-right">Registrar filamento</button>
                 </form>
             </div>
         </div>
@@ -468,7 +279,6 @@
     });
 
 </script>
-
 <!-- Bootstrap core JavaScript-->
 <script src="../../static/vendor/jquery/jquery.min.js"></script>
 <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -485,7 +295,6 @@
 <!-- Page level custom scripts -->
 <script src="../../static/js/demo/chart-area-demo.js"></script>
 <script src="../../static/js/demo/chart-pie-demo.js"></script>
-<script src="../../static/js/modales.js"></script>
 
 
 </body>

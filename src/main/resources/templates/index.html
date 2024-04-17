@@ -67,12 +67,29 @@
                 <div id="collapsethree" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar objetos:</h6>
-                        <a class="collapse-item text-black-50" href="/admin/Objetos">Mirar Objetos</a>
-                        <a class="collapse-item text-black-50" href="/admin/RegistrarObjeto">Registrar objetos</a>
+                        <a class="nav-link collapsed text-black-50" href="#collapsethreeChild" data-toggle="collapse" aria-expanded="false" aria-controls="collapsethreeChild">Mirar Objetos</a>
+                        <a class="nav-link collapsed text-black-50" href="#collapsethreeChildReg" data-toggle="collapse" aria-expanded="false" aria-controls="collapsethreeChild">Registrar Objetos</a>
                         <div class="collapse-divider"></div>
-                        <a class="collapse-item text-black-50" href="/">Actualizar objetos</a>
-                        <a class="collapse-item text-black-50" href="/">Eliminar objetos</a>
-
+                    </div>
+                </div>
+                <div id="collapsethreeChild" class="collapse" aria-labelledby="headingUtilities" data-parent="#collapsethree">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administrar objetos:</h6>
+                        <a class="collapse-item text-black-50" href="/admin/Indexfilamento">Filamento</a>
+                        <a class="collapse-item text-black-50" href="/nuevo/nuevaImpresora">Impresiones</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item text-black-50" href="/">papeleria</a>
+                        <a class="collapse-item text-black-50" href="/nuevo/RegistrarObjetos">Varios</a>
+                    </div>
+                </div>
+                <div id="collapsethreeChildReg" class="collapse" aria-labelledby="headingUtilities" data-parent="#collapsethree">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administrar objetos:</h6>
+                        <a class="collapse-item text-black-50" href="/admin/RegistrarObjeto">Filamento</a>
+                        <a class="collapse-item text-black-50" href="/nuevo/nuevaImpresora">Impresiones</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item text-black-50" href="/">papeleria</a>
+                        <a class="collapse-item text-black-50" href="/nuevo/RegistrarObjetos">Varios</a>
                     </div>
                 </div>
             </li>
@@ -121,7 +138,7 @@
 
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/home/verDelitos">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un objeto" name="nombreDelito"
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="buscar un objeto" name="nombre"
                                    aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -141,7 +158,7 @@
                                  aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search" action="/">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" name="nombreObjeto"
+                                        <input type="text" class="form-control bg-light border-0 small" name="nombre"
                                                placeholder="Buscar un objeto" aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append text-black-50">
                                             <button class="btn btn-primary text-black-50" type="submit">
@@ -186,6 +203,45 @@
             </div>
         </div>
     </div>
+<!--    codigo para ocultar las ventanas desplegables al hacer click fuera de ellas-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var lastClickedCollapse = null;
+
+            document.addEventListener("click", function (event) {
+                var target = event.target;
+                var collapsethree = document.getElementById("collapsethree");
+                var collapsethreeChild = document.getElementById("collapsethreeChild");
+                var collapsethreeChildReg = document.getElementById("collapsethreeChildReg");
+                var isCollapsethreeOpen = collapsethree.classList.contains("show");
+                var isCollapsethreeChildOpen = collapsethreeChild.classList.contains("show");
+                var isCollapsethreeChildRegOpen = collapsethreeChildReg.classList.contains("show");
+                var isTargetInsideCollapsethree = collapsethree.contains(target);
+                var isTargetInsideCollapsethreeChild = collapsethreeChild.contains(target);
+                var isTargetInsideCollapsethreeChildReg = collapsethreeChildReg.contains(target);
+
+                if (isCollapsethreeChildRegOpen && !isTargetInsideCollapsethreeChildReg) {
+                    // Cierra el tercer collapse
+                    $("#collapsethreeChildReg").collapse("hide");
+                    lastClickedCollapse = collapsethreeChildReg;
+                } else if (isCollapsethreeChildOpen && !isTargetInsideCollapsethreeChild) {
+                    // Cierra el segundo collapse
+                    $("#collapsethreeChild").collapse("hide");
+                    lastClickedCollapse = collapsethreeChild;
+                } else if (isCollapsethreeOpen && !isTargetInsideCollapsethree) {
+                    // Cierra el primer collapse
+                    $("#collapsethree").collapse("hide");
+                    lastClickedCollapse = collapsethree;
+                } else if (lastClickedCollapse) {
+                    // Cierra el último collapse abierto si se hace clic fuera de todos
+                    $(lastClickedCollapse).collapse("hide");
+                    lastClickedCollapse = null;
+                }
+            });
+        });
+
+    </script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../static/vendor/jquery/jquery.min.js"></script>
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

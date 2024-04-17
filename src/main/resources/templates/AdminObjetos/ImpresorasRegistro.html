@@ -62,7 +62,6 @@
             </div>
         </li>
 
-
         <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsethree" href=""
                aria-expanded="true" aria-controls="collapseUtilities">
@@ -72,16 +71,33 @@
             <div id="collapsethree" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar objetos:</h6>
-                    <a class="collapse-item text-black-50" href="/">Mirar Objetos</a>
-                    <a class="collapse-item text-black-50" href="/admin/RegistrarObjeto">Registrar objetos</a>
+                    <a class="nav-link collapsed text-black-50" href="#collapsethreeChild" data-toggle="collapse" aria-expanded="false" aria-controls="collapsethreeChild">Mirar Objetos</a>
+                    <a class="nav-link collapsed text-black-50" href="#collapsethreeChildReg" data-toggle="collapse" aria-expanded="false" aria-controls="collapsethreeChild">Registrar Objetos</a>
                     <div class="collapse-divider"></div>
-                    <a class="collapse-item text-black-50" href="/">Actualizar objetos</a>
-                    <a class="collapse-item text-black-50" href="/">Eliminar objetos</a>
 
                 </div>
             </div>
+            <div id="collapsethreeChild" class="collapse" aria-labelledby="headingUtilities" data-parent="#collapsethree">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Administrar objetos:</h6>
+                    <a class="collapse-item text-black-50" href="/admin/Indexfilamento">Filamento</a>
+                    <a class="collapse-item text-black-50" href="/">Impresiones</a>
+                    <div class="collapse-divider"></div>
+                    <a class="collapse-item text-black-50" href="/">papeleria</a>
+                    <a class="collapse-item text-black-50" href="/">Varios</a>
+                </div>
+            </div>
+            <div id="collapsethreeChildReg" class="collapse" aria-labelledby="headingUtilities" data-parent="#collapsethree">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Administrar objetos:</h6>
+                    <a class="collapse-item text-black-50" href="/admin/RegistrarObjeto">Filamento</a>
+                    <a class="collapse-item text-black-50" href="/">Impresiones</a>
+                    <div class="collapse-divider"></div>
+                    <a class="collapse-item text-black-50" href="/">papeleria</a>
+                    <a class="collapse-item text-black-50" href="/">Varios</a>
+                </div>
+            </div>
         </li>
-
         <hr class="sidebar-divider text-black-50">
 
         <div class="sidebar-heading text-black-50">
@@ -189,44 +205,81 @@
                 </ul>
             </nav>
             <div class="container-fluid">
-                <h2> Añadir filamento</h2>
+                <h2> Añadir Impresoras</h2>
                 <br>
-                <form action="" method="post"
+                <form action="" method="post" th:object="${impresora}"
                       enctype="multipart/form-data">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="nombreObjeto" class="form-label">Nombre:</label>
-                            <input type="text" id="nombreObjeto" class="form-control form-control-user" placeholder="nombre">
+                            <label for="numImpresora" class="form-label">Numero de impresora:</label>
+                            <input th:field="*{numImpresora}" type="text" id="numImpresora" class="form-control form-control-user" placeholder="Numero de impresora">
 
                         </div>
                         <div class="col-sm-6">
-                            <label for="TipoFilamento" class="form-label">Tipo:</label>
-                            <input type="text" id="TipoFilamento" class="form-control form-control-user" placeholder="Tipo:">
+                            <label for="TipoImpresora" class="form-label">Tipo:</label>
+                            <input th:field="*{tipo}"type="text" id="TipoImpresora" class="form-control form-control-user" placeholder="Tipo:">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="CantidadFilamento" class="form-label">Cantidad:</label>
-                            <input type="number" id="CantidadFilamento" class="form-control form-control-user" placeholder="cantidad">
+                            <label for="marca" class="form-label">Marca:</label>
+                            <input th:field="*{marca}" type="text" id="marca" class="form-control form-control-user" placeholder="Marca:">
 
                         </div>
                         <div class="col-sm-6">
-                            <label for="ColorFilamento" class="form-label">Color:</label>
-                            <input type="text" id="ColorFilamento" class="form-control form-control-user" placeholder="color:">
+                            <label for="estatus" class="form-label">Estatus:</label>
+                            <input th:field="*{estatus}" type="text" id="estatus" class="form-control form-control-user" placeholder="Estatus:">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <label for="notas" class="form-label">Notas:</label>
-                            <textarea id="notas" class="form-control form-control-user no-resizable heigth-large" placeholder="Notas" rows="6" ></textarea>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="fechaEdicion" class="form-label">Fecha:</label>
+                            <input th:field="*{fechaAgregado}" type="date" id="fechaEdicion" class="form-control form-control-user" placeholder="Fecha de registro">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-dark btn-sm-2 float-right">Registrar filamento</button>
+                    <button type="submit" class="btn btn-dark btn-sm-2 float-right">Registrar Impresora</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var lastClickedCollapse = null;
+
+        document.addEventListener("click", function (event) {
+            var target = event.target;
+            var collapsethree = document.getElementById("collapsethree");
+            var collapsethreeChild = document.getElementById("collapsethreeChild");
+            var collapsethreeChildReg = document.getElementById("collapsethreeChildReg");
+            var isCollapsethreeOpen = collapsethree.classList.contains("show");
+            var isCollapsethreeChildOpen = collapsethreeChild.classList.contains("show");
+            var isCollapsethreeChildRegOpen = collapsethreeChildReg.classList.contains("show");
+            var isTargetInsideCollapsethree = collapsethree.contains(target);
+            var isTargetInsideCollapsethreeChild = collapsethreeChild.contains(target);
+            var isTargetInsideCollapsethreeChildReg = collapsethreeChildReg.contains(target);
+
+            if (isCollapsethreeChildRegOpen && !isTargetInsideCollapsethreeChildReg) {
+                // Cierra el tercer collapse
+                $("#collapsethreeChildReg").collapse("hide");
+                lastClickedCollapse = collapsethreeChildReg;
+            } else if (isCollapsethreeChildOpen && !isTargetInsideCollapsethreeChild) {
+                // Cierra el segundo collapse
+                $("#collapsethreeChild").collapse("hide");
+                lastClickedCollapse = collapsethreeChild;
+            } else if (isCollapsethreeOpen && !isTargetInsideCollapsethree) {
+                // Cierra el primer collapse
+                $("#collapsethree").collapse("hide");
+                lastClickedCollapse = collapsethree;
+            } else if (lastClickedCollapse) {
+                // Cierra el último collapse abierto si se hace clic fuera de todos
+                $(lastClickedCollapse).collapse("hide");
+                lastClickedCollapse = null;
+            }
+        });
+    });
+
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src="../../static/vendor/jquery/jquery.min.js"></script>
 <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

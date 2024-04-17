@@ -2,8 +2,7 @@ package com.innovaultmy.app.models;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuario")
@@ -11,6 +10,7 @@ public class Usuario {
 
     @Getter @Setter
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -39,5 +39,25 @@ public class Usuario {
     @Column(name = "Correo", length = 255)
     private String correo;
 
+    public Usuario(Long id, String nombre, String contrasenia, int codigoUniversitario, String permisos, int telefono, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.contrasenia = contrasenia;
+        this.codigoUniversitario = codigoUniversitario;
+        this.permisos = permisos;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
 
+    public Usuario(String nombre, String contrasenia, int codigoUniversitario, String permisos, int telefono, String correo) {
+        this.nombre = nombre;
+        this.contrasenia = contrasenia;
+        this.codigoUniversitario = codigoUniversitario;
+        this.permisos = permisos;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    public Usuario() {
+    }
 }
